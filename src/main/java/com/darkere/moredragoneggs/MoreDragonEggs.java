@@ -26,7 +26,6 @@ public class MoreDragonEggs {
         if (event.getEntityLiving() == null) return;
         MinecraftServer server = event.getEntity().getServer();
         if (server == null) return;
-        if(server.getWorld(World.field_234918_g_) == null || server.getWorld(World.field_234918_g_).isRemote()) return;
         if (event.getEntity().getEntityWorld().equals(server.getWorld(World.field_234920_i_))) {
             if (event.getEntity() instanceof EnderDragonEntity) {
                 EnderDragonEntity d = (EnderDragonEntity) event.getEntity();
