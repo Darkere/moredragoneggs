@@ -1,11 +1,13 @@
 package com.darkere.moredragoneggs.mixin;
 
-import net.minecraft.world.level.block.Blocks;
+import com.darkere.moredragoneggs.MoreDragonEggs;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.end.EndDragonFight;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.EndPodiumFeature;
-import net.minecraft.server.level.ServerLevel;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,9 +28,12 @@ public class DragonEggMixin {
 
 
     @Inject(at = @At("HEAD"),method = "setDragonKilled(Lnet/minecraft/world/entity/boss/enderdragon/EnderDragon;)V")
-    private void setDragonKilled(EnderDragon p_186096_1_, CallbackInfo cb) {
+    private void setDragonKilled(EnderDragon p_64086_, CallbackInfo cb) {
+        BlockPos pos = this.level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, EndPodiumFeature.END_PODIUM_LOCATION);
         if (this.previouslyKilled) {
-            this.level.setBlockAndUpdate(this.level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, EndPodiumFeature.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.defaultBlockState());
+            this.level.setBlockAndUpdate(pos, Blocks.DRAGON_EGG.defaultBlockState());
         }
+        MoreDragonEggs.PlaceDragonHead( pos, this.level);
     }
+
 }
