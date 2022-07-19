@@ -1,11 +1,12 @@
 package com.darkere.moredragoneggs;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.WallSkullBlock;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.WallSkullBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.Direction;
+import net.minecraft.util.concurrent.TickDelayedTask;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -19,10 +20,9 @@ public class MoreDragonEggs {
     public MoreDragonEggs() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG.spec);
 
-
     }
 
-    public static void PlaceDragonHead(BlockPos pos, ServerLevel level) {
+    public static void PlaceDragonHead(BlockPos pos, ServerWorld level) {
         if (!SERVER_CONFIG.shouldSpawnHead())
             return;
 
@@ -49,10 +49,10 @@ public class MoreDragonEggs {
         if (i > 3)
             return;
 
-        level.setBlockAndUpdate(headPos, Blocks.DRAGON_WALL_HEAD.defaultBlockState().setValue(WallSkullBlock.FACING, dir));
 
-
-
+        BlockPos finalHeadPos = headPos;
+        Direction finalDir = dir;
+        level.getServer().tell(new TickDelayedTask(0,()-> level.setBlockAndUpdate(finalHeadPos, Blocks.DRAGON_WALL_HEAD.defaultBlockState().setValue(WallSkullBlock.FACING, finalDir))));
     }
 
 
