@@ -38,21 +38,23 @@ public class MoreDragonEggs {
         else
             dir = Direction.NORTH;
 
-        BlockPos headPos = pos.relative(dir);
-        int i = 0;
-        while (level.getBlockState(headPos).getBlock() != Blocks.AIR && i < 4) {
+        for (int i = 0; i < 4; i++) {
+            BlockPos headPos = pos.relative(dir);
+
+            // account for possible BetterEnd Reforked style end podiums
+            if (level.getBlockState(headPos).getBlock() == Blocks.BEDROCK) {
+                headPos = headPos.relative(dir);
+            }
+
+            if (level.getBlockState(headPos).getBlock() == Blocks.AIR) {
+                BlockPos finalHeadPos = headPos;
+                Direction finalDir = dir;
+                level.getServer().tell(new TickDelayedTask(0, () -> level.setBlockAndUpdate(finalHeadPos, Blocks.DRAGON_WALL_HEAD.defaultBlockState().setValue(WallSkullBlock.FACING, finalDir))));
+                break;
+            }
+
             dir = dir.getClockWise();
-            headPos = pos.relative(dir);
-            i++;
         }
-
-        if (i > 3)
-            return;
-
-
-        BlockPos finalHeadPos = headPos;
-        Direction finalDir = dir;
-        level.getServer().tell(new TickDelayedTask(0,()-> level.setBlockAndUpdate(finalHeadPos, Blocks.DRAGON_WALL_HEAD.defaultBlockState().setValue(WallSkullBlock.FACING, finalDir))));
     }
 
 
