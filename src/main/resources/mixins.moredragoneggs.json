@@ -1,8 +1,0 @@
-{
-  "required": true,
-  "package": "com.darkere.moredragoneggs.mixin",
-  "compatibilityLevel": "JAVA_17",
-  "refmap": "mixins.moredragoneggs.refmap.json",
-  "mixins": ["DragonEggMixin"],
-  "minVersion": "0.8"
-}

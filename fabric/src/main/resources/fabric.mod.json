@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "moredragoneggs",
+  "version": "${version}",
+  "name": "More Dragon Eggs",
+  "description": "This mod makes it so a dragon egg spawns every time the dragon dies.",
+  "authors": [
+    "Darkere"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Darkere/moredragoneggs",
+    "sources": "https://github.com/Darkere/moredragoneggs"
+  },
+  "license": "MIT LICENSE",
+  "icon": "assets/moredragoneggs/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.darkere.moredragoneggs.fabric.MoreDragonEggsFabric"
+    ]
+  },
+  "mixins": [
+    "moredragoneggs-common.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.19.2",
+    "architectury": ">=6.2.43",
+    "forgeconfigapiport": ">=4.2"
+  }
+}

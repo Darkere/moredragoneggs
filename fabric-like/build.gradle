@@ -1,0 +1,26 @@
+architectury {
+    common(rootProject.enabled_platforms.split(","))
+}
+
+loom {
+    accessWidenerPath = project(":common").loom.accessWidenerPath
+}
+
+dependencies {
+    // Fabric Loader
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    // Fabric API
+    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    // Architectury API Fabric | Remove the next line if you don't want to depend on the API
+    modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
+    // Night Config
+    modImplementation "com.electronwill.night-config:core:3.6.6"
+    modImplementation "com.electronwill.night-config:toml:3.6.6"
+    // Forge Config API Port
+    modImplementation "curse.maven:forgeconfigfabric-547434:4104948"
+    // ModMenu
+    modApi "com.terraformersmc:modmenu:4.1.1"
+    // Configured for Fabric
+    modImplementation "curse.maven:configuredfabric-667378:4010582"
+    compileClasspath(project(path: ":common", configuration: "namedElements")) { transitive false }
+}

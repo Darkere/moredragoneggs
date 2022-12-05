@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+issueTrackerURL = "https://github.com/Darkere/moredragoneggs/issues"
+license = "MIT LICENSE"
+
+[[mods]]
+modId = "moredragoneggs"
+version = "${version}"
+displayName = "More Dragon Eggs"
+authors = "Darkere"
+description = '''
+This mod makes it so a dragon egg spawns every time the dragon dies.
+'''
+#logoFile = ""
+
+[[dependencies.moredragoneggs]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.moredragoneggs]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.moredragoneggs]]
+modId = "architectury"
+mandatory = true
+versionRange = "[6.2.43,)"
+ordering = "AFTER"
+side = "BOTH"

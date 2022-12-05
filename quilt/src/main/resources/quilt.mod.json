@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "mixin": [
+    "moredragoneggs-common.mixins.json"
+  ],
+  "quilt_loader": {
+    "group": "${group}",
+    "id": "moredragoneggs",
+    "version": "${version}",
+    "name": "More Dragon Eggs",
+    "description": "This mod makes it so a dragon egg spawns every time the dragon dies.",
+    "authors": [
+      "Darkere"
+    ],
+    "contact": {
+      "sources": "https://github.com/Darkere/moredragoneggs"
+    },
+    "license": "MIT LICENSE",
+    "icon": "assets/moredragoneggs/icon.png",
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "environment": "*",
+    "entrypoints": {
+      "init": [
+        "com.darkere.moredragoneggs.quilt.MoreDragonEggsQuilt"
+      ]
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "quilt_base",
+        "version": "*"
+      },
+      {
+        "id": "minecraft",
+        "version": ">=1.19.2"
+      },
+      {
+        "id": "architectury",
+        "version": ">=6.2.43"
+      },
+      {
+        "id": "forgeconfigapiport",
+        "version": ">=4.2"
+      }
+    ]
+  }
+}
