@@ -27,9 +27,11 @@ public class DragonEggMixin {
     ServerLevel level;
 
 
+    @Shadow @Final private BlockPos origin;
+
     @Inject(at = @At("HEAD"),method = "setDragonKilled(Lnet/minecraft/world/entity/boss/enderdragon/EnderDragon;)V")
     private void setDragonKilled(EnderDragon p_64086_, CallbackInfo cb) {
-        BlockPos pos = this.level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, EndPodiumFeature.END_PODIUM_LOCATION);
+        BlockPos pos = this.level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, EndPodiumFeature.getLocation(origin));
         if (this.previouslyKilled) {
             this.level.setBlockAndUpdate(pos, Blocks.DRAGON_EGG.defaultBlockState());
         }
