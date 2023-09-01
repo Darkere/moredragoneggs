@@ -3,6 +3,10 @@
   "package": "com.darkere.moredragoneggs.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "mixins.moredragoneggs.refmap.json",
-  "mixins": ["DragonEggMixin"],
+  "mixins": [
+    "DragonEggMixin",
+    "EndDragonFightAccess",
+    "EndergeticDragonEggMixin"
+  ],
   "minVersion": "0.8"
 }
