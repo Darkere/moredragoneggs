@@ -1,5 +1,6 @@
 package com.darkere.moredragoneggs;
 
+import com.darkere.moredragoneggs.mixin.EndDragonFightAccess;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.TickTask;
@@ -7,6 +8,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WallSkullBlock;
+import net.minecraft.world.level.dimension.end.EndDragonFight;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.EndPodiumFeature;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -59,4 +63,15 @@ public class MoreDragonEggs {
     }
 
 
+    public static void placeAdditionalEggAndMaybeHead(EndDragonFight dragonFight) {
+        ServerLevel level = ((EndDragonFightAccess)dragonFight).moredragoneggs_getLevel();
+        BlockPos pos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, EndPodiumFeature.END_PODIUM_LOCATION);
+        while (level.getBlockState(pos).getBlock() != Blocks.AIR){
+            pos = pos.above();
+        }
+        if (dragonFight.hasPreviouslyKilledDragon()) {
+            level.setBlockAndUpdate(pos, Blocks.DRAGON_EGG.defaultBlockState());
+        }
+        PlaceDragonHead( pos, level);
+    }
 }

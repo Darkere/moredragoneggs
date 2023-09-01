@@ -5,6 +5,7 @@
   "refmap": "mixins.moredragoneggs.refmap.json",
   "mixins": [
     "DragonEggMixin",
+    "EndDragonFightAccess",
     "EndergeticDragonEggMixin"
   ],
   "minVersion": "0.8"
