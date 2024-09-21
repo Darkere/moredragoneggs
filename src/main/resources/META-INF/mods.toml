@@ -27,3 +27,6 @@ description='''
 This mod makes it so a dragon egg spawns every time the dragon dies.
 '''
 displayTest="IGNORE_SERVER_VERSION"
+
+[[mixins]]
+config="moredragoneggs.mixins.json"

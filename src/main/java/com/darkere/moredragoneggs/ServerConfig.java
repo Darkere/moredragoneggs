@@ -1,14 +1,15 @@
 package com.darkere.moredragoneggs;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ServerConfig {
 
-    private ForgeConfigSpec.BooleanValue spawnHead;
-    public ForgeConfigSpec spec;
+    private ModConfigSpec.BooleanValue spawnHead;
+    public ModConfigSpec spec;
 
     public ServerConfig() {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         spawnHead = builder.comment("Also Spawn a Dragon head on the Pedestal.").define("spawnHead", false);
         spec = builder.build();
 

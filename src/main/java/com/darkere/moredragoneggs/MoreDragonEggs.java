@@ -1,5 +1,6 @@
 package com.darkere.moredragoneggs;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.TickTask;
@@ -7,22 +8,21 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WallSkullBlock;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("moredragoneggs")
 public class MoreDragonEggs {
 
     public static final ServerConfig SERVER_CONFIG = new ServerConfig();
-
+    DeferredRegister.Blocks b = DeferredRegister.createBlocks().registerSimpleBlock()
     public MoreDragonEggs() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG.spec);
-
-
     }
-
     public static void PlaceDragonHead(BlockPos pos, ServerLevel level) {
         if (!SERVER_CONFIG.shouldSpawnHead())
             return;
@@ -56,6 +56,10 @@ public class MoreDragonEggs {
 
             dir = dir.getClockWise();
         }
+        if(Minecraft.getInstance().hitResult instanceof BlockHitResult blockHitResult){
+            blockHitResult.getDirection()
+        }
+        BlockHitResult blockHitResult = (BlockHitResult) Minecraft.getInstance().hitResult;
     }
 
 
