@@ -1,8 +1,9 @@
 plugins {
     id 'java-library'
+    id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '1.0.17'
-    id 'net.darkhax.curseforgegradle' version '1.1.18'
+    id 'net.neoforged.moddev' version '2.0.141'
+    id 'net.darkhax.curseforgegradle' version '1.2.30'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -26,16 +27,16 @@ base {
 }
 
 // Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 neoForge {
     // Specify the version of NeoForge to use.
     version = project.neo_version
 
-    parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
-    }
+//    parchment {
+//        mappingsVersion = project.parchment_mappings_version
+//        minecraftVersion = project.parchment_minecraft_version
+//    }
 
     // This line is optional. Access Transformers are automatically detected
     // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
@@ -65,7 +66,7 @@ neoForge {
         }
 
         data {
-            data()
+            clientData()
 
             // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
             // gameDirectory = project.file('run-data')
@@ -89,7 +90,6 @@ neoForge {
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }
-
     mods {
         // define mod <-> source bindings
         // these are used to tell the game which sources are for which mod
@@ -143,14 +143,10 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
             neo_version            : neo_version,
-            neo_version_range      : neo_version_range,
-            loader_version_range   : loader_version_range,
             mod_id                 : mod_id,
             mod_name               : mod_name,
             mod_license            : mod_license,
-            mod_version            : mod_version,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_version            : mod_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties
@@ -169,7 +165,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     apiToken = System.getenv('curseforge_token')
     def mainFile = upload(358700, jar)
     mainFile.releaseType = "release"
-    mainFile.changelog = '- updated to 1.20.4 neoforge'
+    mainFile.changelog = '- updated to 21.6.1 neoforge'
 }
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {

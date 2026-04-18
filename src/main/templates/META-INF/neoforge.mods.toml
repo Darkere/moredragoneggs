@@ -6,8 +6,6 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="${loader_version_range}" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
-# A URL to refer people to when problems occur with this mod
 license="${mod_license}"
 [[mods]] #mandatory
 # The modid of the mod
@@ -26,7 +24,6 @@ authors="Darkere" #optional
 description='''
 This mod makes it so a dragon egg spawns every time the dragon dies.
 '''
-displayTest="IGNORE_SERVER_VERSION"
 
 [[mixins]]
 config="moredragoneggs.mixins.json"

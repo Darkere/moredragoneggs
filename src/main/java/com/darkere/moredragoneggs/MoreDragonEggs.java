@@ -34,7 +34,7 @@ public class MoreDragonEggs {
 
         Direction dir;
         if (e != null)
-            dir = Direction.getNearest(e.getX() - pos.getX(), 0, e.getZ() - pos.getZ());
+            dir = Direction.getNearest((int)(e.getX() - pos.getX()), 0,(int) (e.getZ() - pos.getZ()),Direction.NORTH);
         else
             dir = Direction.NORTH;
 
@@ -49,7 +49,7 @@ public class MoreDragonEggs {
             if (level.getBlockState(headPos).getBlock() == Blocks.AIR) {
                 BlockPos finalHeadPos = headPos;
                 Direction finalDir = dir;
-                level.getServer().tell(new TickTask(0, () -> level.setBlockAndUpdate(finalHeadPos, Blocks.DRAGON_WALL_HEAD.defaultBlockState().setValue(WallSkullBlock.FACING, finalDir))));
+                level.getServer().addTickable(new TickTask(0, () -> level.setBlockAndUpdate(finalHeadPos, Blocks.DRAGON_WALL_HEAD.defaultBlockState().setValue(WallSkullBlock.FACING, finalDir))));
                 break;
             }
 
