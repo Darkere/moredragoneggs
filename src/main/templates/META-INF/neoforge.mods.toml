@@ -15,7 +15,6 @@ version="${mod_version}" #mandatory
 # A display name for the mod
 displayName="${mod_name}" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
-logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
 authors="Darkere" #optional
 # The description text for the mod (multi line!) (#mandatory)
