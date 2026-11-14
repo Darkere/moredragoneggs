@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.neoforged.moddev' version '2.0.148'
-    id 'net.darkhax.curseforgegradle' version '1.2.30'
+    id 'net.darkhax.curseforgegradle' version '1.3.33'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -165,7 +165,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     apiToken = System.getenv('curseforge_token')
     def mainFile = upload(358700, jar)
     mainFile.releaseType = "release"
-    mainFile.changelog = '- updated to 21.6.1 neoforge'
+    mainFile.changelog = '- updated to 26.3 neoforge'
 }
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {

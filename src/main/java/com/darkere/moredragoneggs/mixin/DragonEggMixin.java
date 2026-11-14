@@ -29,9 +29,14 @@ public class DragonEggMixin {
 
     @Shadow @Final private BlockPos origin;
 
+    @Shadow
+    public static BlockPos getPodiumLocation(BlockPos offset) {
+        throw new UnsupportedOperationException("Implemented via mixin");
+    }
+
     @Inject(at = @At("HEAD"),method = "setDragonKilled(Lnet/minecraft/world/entity/boss/enderdragon/EnderDragon;)V")
     private void setDragonKilled(EnderDragon p_64086_, CallbackInfo cb) {
-        BlockPos pos = this.level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, EndPodiumFeature.getLocation(origin));
+        BlockPos pos = this.level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, getPodiumLocation(origin));
         if (this.hasPreviouslyKilledDragon) {
             this.level.setBlockAndUpdate(pos, Blocks.DRAGON_EGG.defaultBlockState());
         }

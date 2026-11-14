@@ -19,7 +19,7 @@ public class MoreDragonEggs {
     public static final ServerConfig SERVER_CONFIG = new ServerConfig();
 
     public MoreDragonEggs(IEventBus ModEventBus, ModContainer modContainer) {
-        modContainer.registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG.spec);
+        modContainer.registerConfig(ModConfig.Type.SYNCED, SERVER_CONFIG.spec);
     }
 
     public static void PlaceDragonHead(BlockPos pos, ServerLevel level) {
@@ -49,7 +49,7 @@ public class MoreDragonEggs {
             if (level.getBlockState(headPos).getBlock() == Blocks.AIR) {
                 BlockPos finalHeadPos = headPos;
                 Direction finalDir = dir;
-                level.getServer().addTickable(new TickTask(0, () -> level.setBlockAndUpdate(finalHeadPos, Blocks.DRAGON_WALL_HEAD.defaultBlockState().setValue(WallSkullBlock.FACING, finalDir))));
+                level.getServer().schedule(new TickTask(0, () -> level.setBlockAndUpdate(finalHeadPos, Blocks.DRAGON_WALL_HEAD.defaultBlockState().setValue(WallSkullBlock.FACING, finalDir))));
                 break;
             }
 
